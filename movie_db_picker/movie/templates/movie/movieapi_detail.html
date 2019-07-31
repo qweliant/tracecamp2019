@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1><img src={{ object.image }} /></h1>
+<p>{{ object.title }}</p>
+<p> {{ object.tag }}</p>
+
+{% for comment in object.comments.all %}
+    {{ comment }}
+    <br>
+{% endfor %}
+{% endblock %}

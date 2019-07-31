@@ -17,7 +17,7 @@
   <div class="card-body card-body-cascade text-center">
 
     <!-- Title -->
-    <h4 class="card-title"><strong>{{ object.title }}</strong></h4>
+    <h4 class="card-title"><strong><a href="{% url 'movie_api_detail' pk=post.pk %}">{{ object.title }}</a></strong></h4>
     <!-- Subtitle -->
     <h6 class="font-weight-bold indigo-text py-2">{{ object.tag }}</h6>
     <!-- Text -->
@@ -36,25 +36,6 @@
 </div>
 <br>
 {% endfor %}
-<!-- Card -->
-<!---{% for object in object_list  %}
 
-    <div class="container">
-  <div class="row">
-    <div class="col-sm">
-      {{ object.title }}
-    </div>
-    <div class="col-sm">
-      {{ object.rating }}
-    </div>
-    <div class="col-sm">
-      {{ object.genre }}
-    </div>
-    <div class="col-sm">
-      <img src={{ object.image }} />
-    </div>
-  </div>
-</div>
-    {% endfor %}
 
 {% endblock %}

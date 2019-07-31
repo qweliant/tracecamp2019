@@ -1,12 +1,12 @@
 import requests
-from movie.models import Movie, MovieApi
-from movie.serializers import MovieSerializer, MovieAPISerializer
-from django.shortcuts import render
+from .models import Movie, MovieApi
+from .serializers import MovieSerializer, MovieAPISerializer
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import CreateView, DetailView, UpdateView,ListView, TemplateView, DeleteView
-
+from .forms import CommentForm
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -18,19 +18,15 @@ class HomePageView(TemplateView):
 class MovieAPIListView(ListView):
     model = MovieApi
 
-def hello_world_response(request):
-    api_key = "5f2b00a991eef055a54a22efc396872d"
-    url = f'https://api.themoviedb.org/3/movie/{8393}?api_key={api_key}'
-    response = requests.get(url).json()
-    call = {
-    "title": response['original_title'],
-    "rating": response['vote_average'],
-    "genre": response['genres'],
-        }
-        
-    return JsonResponse(call)
 
-@csrf_exempt
+class MovieAPIDetailView(DetailView):
+    model = MovieApi
+
+class MovieAPIDelete(DeleteView):
+    model = MovieApi
+    success_url = reverse_lazy('movie_list')
+
+'''@csrf_exempt
 def movie_api_list(request):
     if request.method == 'GET':
         snippets = MovieApi.objects.all()
@@ -45,9 +41,9 @@ def movie_api_list(request):
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+        return JsonResponse(serializer.errors, status=400)'''
 
-@csrf_exempt
+'''@csrf_exempt
 def movie_picker_list(request):
     if request.method == 'GET':
         snippets = Movie.objects.all()
@@ -62,25 +58,34 @@ def movie_picker_list(request):
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+        return JsonResponse(serializer.errors, status=400)'''
 
-@csrf_exempt 
-def movie_detail(request, id):
-    snippet = Movie.objects.get(pk=id)
+'''@csrf_exempt 
+def movie_api_detail(request, pk):
+    snippet = MovieApi.objects.get(pk=pk)
     if request.method =='GET':
-        serializer = MovieSerializer(snippet)
+        serializer = MovieAPISerializer(snippet)
         return JsonResponse(serializer.data)
     if request.method =='POST':
         if request.body.decode('utf-8') == "":
             return HttpResponse('You need to pass in some data', status=400)
         data = JSONParser().parse(request)
-        serializer = MovieSerializer(snippet, data=data)
+        serializer = MovieAPISerializer(snippet, data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+        return JsonResponse(serializer.errors, status=400)'''
 
+def add_comment_to_post(request, pk):
+    movie = get_object_or_404(MovieApi, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = movie
+            comment.save()
+            return redirect('movie_api_detail', pk=movie.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'movie/movie_comment.html', {'form': form})
 
-class MovieDelete(DeleteView):
-    model = Movie
-    success_url = reverse_lazy('movie_list')

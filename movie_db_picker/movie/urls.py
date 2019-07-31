@@ -1,12 +1,11 @@
 from django.urls import path
-from movie import views
-from movie.views import MovieDelete, HomePageView, MovieAPIListView
+from . import views
 
 
 urlpatterns = [
-    path('', HomePageView.as_view(), name='home'),
-    path('movie/list/', views.movie_picker_list, name = 'movie_list'),
-    path('movieapi/list/', MovieAPIListView.as_view(), name='movie_api_list'),
-    path('movie/<int:pk>/', views.movie_detail),
-    path('delete/<int:pk>/', MovieDelete.as_view(), name='movie_delete'),
+    path('', views.HomePageView.as_view(), name='home'),
+    path('movieapi/list/', views.MovieAPIListView.as_view(), name='movie_api_list'),
+    path('movieapi/<int:pk>/', views.MovieAPIDetailView.as_view(), name = 'movie_api_detail'),
+    path('movieapi/delete/<int:pk>/', views.MovieAPIDelete.as_view(), name='movie_delete'),
+    path('movieapi/comment/<int:pk>', views.add_comment_to_post, name='add_comment_to_post'),
 ]

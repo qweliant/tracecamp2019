@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 import pytz
 import csv
-import pandas as pd
 from movie.models import Movie, MovieApi
 import requests
 import random
