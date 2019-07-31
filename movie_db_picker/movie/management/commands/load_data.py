@@ -34,10 +34,16 @@ class Command(BaseCommand):
             api_key = "5f2b00a991eef055a54a22efc396872d"
             for i  in random.sample(range(2, 500000), 80):
                 url = f'https://api.themoviedb.org/3/movie/{i}?api_key={api_key}'
-                response = requests.get(url)#.json()
+                response = requests.get(url)
+                #print(response.content)
                 if response.status_code == 200:
+                    #print("https://image.tmdb.org/t/p/w500"+str(response.json()['poster_path']))
+
                     MovieApi.objects.create(
                         title= response.json()['original_title'],
                         rating= response.json()['vote_average'],
                         genre= response.json()['genres'],
+                        image= "https://image.tmdb.org/t/p/w500"+str(response.json()['poster_path']),
+                        tag = response.json()['tagline'],
+                        description = response.json()['overview'],
                     )

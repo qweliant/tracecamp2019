@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for object in object_list  %}
+<!-- Card -->
+<div class="card card-cascade wider reverse">
+    
+  <!-- Card image -->
+  <div class="view view-cascade overlay">
+    <img class="card-img-top" src={{ object.image }} alt="getting this image is all cap">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body card-body-cascade text-center">
+
+    <!-- Title -->
+    <h4 class="card-title"><strong>{{ object.title }}</strong></h4>
+    <!-- Subtitle -->
+    <h6 class="font-weight-bold indigo-text py-2">{{ object.tag }}</h6>
+    <!-- Text -->
+    <p class="card-text">{{ object.description }}
+    </p>
+
+    <!-- Linkedin -->
+    <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
+    <!-- Twitter -->
+    <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
+    <!-- Dribbble -->
+    <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>
+
+  </div>
+  
+</div>
+<br>
+{% endfor %}
+<!-- Card -->
+<!---{% for object in object_list  %}
+
+    <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      {{ object.title }}
+    </div>
+    <div class="col-sm">
+      {{ object.rating }}
+    </div>
+    <div class="col-sm">
+      {{ object.genre }}
+    </div>
+    <div class="col-sm">
+      <img src={{ object.image }} />
+    </div>
+  </div>
+</div>
+    {% endfor %}
+
+{% endblock %}

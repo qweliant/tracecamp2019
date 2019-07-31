@@ -5,11 +5,18 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
-from django.views.generic.edit import DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView,ListView, TemplateView, DeleteView
+
 from django.urls import reverse_lazy
-import random 
+
 # Create your views here.
 # Import Model
+
+class HomePageView(TemplateView):
+    template_name = "home.html"
+
+class MovieAPIListView(ListView):
+    model = MovieApi
 
 def hello_world_response(request):
     api_key = "5f2b00a991eef055a54a22efc396872d"
