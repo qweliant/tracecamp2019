@@ -7,6 +7,7 @@
 <p> {{ object.tag }}</p>
 
 {% for comment in object.comments.all %}
+    <br>
     {{ comment }}
     <br>
 {% endfor %}
