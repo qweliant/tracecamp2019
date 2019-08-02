@@ -1,0 +1,6 @@
+django-crispy-forms
+django
+django-widget-tweaks
+djangorestframework
+requests
+Jinja2

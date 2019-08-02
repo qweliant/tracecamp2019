@@ -1,22 +1,20 @@
 from django import forms
-from .models import Grocery
+from .models import Post
 from crispy_forms.helper import FormHelper
 
 from crispy_forms.layout import Layout, Submit
 
-class GroceryCreateForm(forms.ModelForm):
-    item = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Grocery'}))
-    category = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Category'}))
-    in_stock = forms.BooleanField(required=False)
+class PostCreateForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Title'}))
+    text = forms.CharField(widget=forms.Textarea)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-           'item',
-           'category',
-           'in_stock',
+           'title',
+           'text',
            Submit('submit', 'Add')
         )
     class Meta:
-        model = Grocery
-        fields = ['item', 'category', 'in_stock',]
+        model = Post
+        fields = ['title', 'text',]

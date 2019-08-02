@@ -2,4 +2,4 @@ django
 django-widget-tweaks
 djangorestframework
 requests
-Jin
+Jinja2
