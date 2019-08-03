@@ -12,6 +12,11 @@ from django.urls import reverse_lazy
 # Create your views here.
 # Import Model
 
+from django_pandas.io import read_frame
+qs = Movie.objects.all()
+df = read_frame(qs)
+df.head()
+
 class HomePageView(TemplateView):
     template_name = "home.html"
 

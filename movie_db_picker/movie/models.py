@@ -20,7 +20,7 @@ class Movie(models.Model):
     production_companies=models.CharField(max_length=50000,default=" ")
     production_countries=models.CharField(max_length=50000,default=" ")
     release_date=models.DateField(default=timezone.now)
-    runtime=models.PositiveIntegerField(default=0)
+    runtime=models.TextField(default="")
     spoken_languages=models.CharField(max_length=50000,default=" ")
     status=models.CharField(max_length=50000,default=" ")
     tagline=models.CharField(max_length=50000,default=" ")

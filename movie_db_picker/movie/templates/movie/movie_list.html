@@ -11,9 +11,9 @@
   <div class="card-body card-body-cascade text-center">
 
     <!-- Title -->
-    <h4 class="card-title"><strong><a href="{% url 'movie_api_detail' pk=object.pk %}">{{ object.title }}</a></strong></h4>
+    <h4 class="card-title"><strong><a href="#">{{ object.title }}</a></strong></h4>
     <!-- Subtitle -->
-    <h6 class="font-weight-bold indigo-text py-2"></h6>
+    <h6 class="font-weight-bold indigo-text py-2">{{object.release_date}}</h6>
     <!-- Text -->
     <p class="card-text">
     </p>
