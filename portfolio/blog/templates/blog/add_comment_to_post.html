@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ post.title }} - {{ post.author }}
+{% endblock %}
+
+
+{% block content %}
+    <h1>New Comment</h1>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {% include 'form_specs/form.html' %}
+        <button type="submit" class="btn btn-success">Post</button>
+    </form>
+{% endblock %}

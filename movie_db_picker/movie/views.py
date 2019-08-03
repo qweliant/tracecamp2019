@@ -18,6 +18,9 @@ class HomePageView(TemplateView):
 class MovieAPIListView(ListView):
     model = MovieApi
 
+class MovieListView(ListView):
+    model = Movie
+
 
 class MovieAPIDetailView(DetailView):
     model = MovieApi
@@ -25,56 +28,6 @@ class MovieAPIDetailView(DetailView):
 class MovieAPIDelete(DeleteView):
     model = MovieApi
     success_url = reverse_lazy('movie_list')
-
-'''@csrf_exempt
-def movie_api_list(request):
-    if request.method == 'GET':
-        snippets = MovieApi.objects.all()
-        serializer = MovieAPISerializer(snippets, many=True)
-        return JsonResponse(serializer.data, safe=False)
-    
-    elif request.method == 'POST':
-        if request.body.decode('utf-8') == "":
-            return HttpResponse('You need to pass in some data', status=400)
-        data = JSONParser().parse(request)
-        serializer = MovieAPISerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)'''
-
-'''@csrf_exempt
-def movie_picker_list(request):
-    if request.method == 'GET':
-        snippets = Movie.objects.all()
-        serializer = MovieSerializer(snippets, many=True)
-        return JsonResponse(serializer.data, safe=False)
-    
-    elif request.method == 'POST':
-        if request.body.decode('utf-8') == "":
-            return HttpResponse('You need to pass in some data', status=400)
-        data = JSONParser().parse(request)
-        serializer = MovieSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)'''
-
-'''@csrf_exempt 
-def movie_api_detail(request, pk):
-    snippet = MovieApi.objects.get(pk=pk)
-    if request.method =='GET':
-        serializer = MovieAPISerializer(snippet)
-        return JsonResponse(serializer.data)
-    if request.method =='POST':
-        if request.body.decode('utf-8') == "":
-            return HttpResponse('You need to pass in some data', status=400)
-        data = JSONParser().parse(request)
-        serializer = MovieAPISerializer(snippet, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)'''
 
 def add_comment_to_post(request, pk):
     movie = get_object_or_404(MovieApi, pk=pk)

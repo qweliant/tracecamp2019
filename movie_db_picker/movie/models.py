@@ -5,8 +5,29 @@ from django.utils import timezone
 
 
 class Movie(models.Model):
-    title = models.CharField(max_length=125)
-    
+
+    Mid = models.IntegerField(default=0)
+    belongs_to_collection=models.CharField(max_length=50000,default=" ")
+    budget=models.IntegerField(default=0)
+    genres= models.CharField(max_length=50000,default=" ")
+    homepage=models.CharField(max_length=50000,default=" ")	
+    imdb_id=models.CharField(max_length=5000,default=" ")
+    original_language=models.CharField(max_length=50000,default=" ")
+    original_title=models.CharField(max_length=50000,default=" ")
+    overview=models.CharField(max_length=50000,default=" ")
+    popularity=models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    poster_path=models.CharField(max_length=50000,default=" ")
+    production_companies=models.CharField(max_length=50000,default=" ")
+    production_countries=models.CharField(max_length=50000,default=" ")
+    release_date=models.DateField(default=timezone.now)
+    runtime=models.PositiveIntegerField(default=0)
+    spoken_languages=models.CharField(max_length=50000,default=" ")
+    status=models.CharField(max_length=50000,default=" ")
+    tagline=models.CharField(max_length=50000,default=" ")
+    title=models.CharField(max_length=50000,default=" ")
+    Keywords=models.CharField(max_length=50000, default=" ")
+    cast=models.CharField(max_length=50000,default=" ")
+    crew=models.CharField(max_length=50000,default=" ")
 
 
 class MovieApi(models.Model):

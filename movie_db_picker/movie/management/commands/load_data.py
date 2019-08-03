@@ -4,6 +4,8 @@ import csv
 from movie.models import Movie, MovieApi
 import requests
 import random
+import datetime
+
 
 
 class Command(BaseCommand):
@@ -22,8 +24,30 @@ class Command(BaseCommand):
             line_count = 0
             for row in csv_reader:
                 if line_count != 0:
+                    
                     Movie.objects.create(
-                        title = row[7],
+                        Mid = row[0],	
+                        #belongs_to_collection=row[1],	
+                        #budget=row[2],
+                        #genres=row[3],
+                        #homepage=row[4],
+                        #imdb_id=row[5],
+                    	#original_language=row[6],
+                        #original_title=row[7],
+                        #overview=row[8],
+                        #popularity=row[9],
+                    	#poster_path=row[10],	
+                        #production_companies=row[11],
+                    	#production_countries=row[12],
+                        #release_date=datetime.datetime.strptime("7/14/2007", "%m/%d/%Y").strftime("%Y-%m-%d"),
+                    	#runtime=row[14],
+                    	#spoken_languages=row[15],
+                    	#status=row[16],
+                    	#tagline=row[17],
+                    	#title=row[18],
+                    	#Keywords=row[19],
+                        #cast=row[20],
+                    	#crew=row[21],
                     )
                     #print (row[7],"\n")
                 line_count += 1

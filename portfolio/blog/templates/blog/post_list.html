@@ -3,7 +3,17 @@
 {% block content %}
     
     {% for object in object_list  %}
-    <li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
+        <div class="post">
+        
+        <div class="date">
+            {{ object.created_date }}
+        </div>
+            <h1><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h1>
+            <p>{{ object.text|linebreaksbr }}</p>
+        </div>
+
+
     {% endfor %}
 
 {% endblock %}
+

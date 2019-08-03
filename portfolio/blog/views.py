@@ -1,7 +1,7 @@
 import requests
 from .models import Post, Comment
-from .forms import PostCreateForm
-from django.shortcuts import render
+from .forms import PostCreateForm, CommentForm
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView, DetailView, UpdateView,ListView, TemplateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -34,6 +34,15 @@ class PostDeleteView(DeleteView):
 class PostTemplateView(TemplateView):
     template_name= "home.html"  
 
-
-class PostListView(ListView):
-    model = Post
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment_to_post.html', {'form': form})

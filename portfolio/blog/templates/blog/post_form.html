@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
+{% block title %}
+  New Post
+{% endblock %}
 
 {% block content %}
-    {% crispy form %}
-    <a href="{% url 'post_list' %}">Nevermind</a>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'form_specs/form.html' %}
+    <button type="submit" class="btn btn-success">Post</button>
+  </form>
 {% endblock %}
