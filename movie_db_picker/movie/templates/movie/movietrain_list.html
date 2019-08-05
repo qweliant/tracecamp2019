@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for object in object_list  %}
+
+<!-- Jumbotron -->
+<div class="jumbotron text-center">
+
+  <!-- Title -->
+  <h4 class="card-title h4 pb-2"><strong>{{object.title}}</strong></h4>
+
+  <!-- Card image -->
+  <div class="view overlay my-4">
+     <img class="card-img-top" src="{{ object.poster_path }}" alt="getting this image is all cap">
+    <a href="#">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <h5 class="indigo-text h5 mb-4">{{ object.tagline }}</h5>
+
+  <p class="card-text"><h6>{{object.overview}}</h6></p>
+
+  <!-- Linkedin -->
+  <h6>{{object.budget}}</h6>
+  <!-- Twitter -->
+  <h6>{{object.revenue}}</h6>
+  <!-- Dribbble -->
+  <h6>{{object.release_date}}</h6>
+
+</div>
+<!-- Jumbotron -->
+
+<br>
+{% endfor %}
+
+
+{% endblock %}
