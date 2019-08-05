@@ -28,6 +28,7 @@ class Movie(models.Model):
     Keywords=models.CharField(max_length=50000, default=" ")
     cast=models.CharField(max_length=50000,default=" ")
     crew=models.CharField(max_length=50000,default=" ")
+    revenue=models.IntegerField(default=0)
 
 
 class MovieApi(models.Model):

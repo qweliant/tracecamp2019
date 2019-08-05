@@ -5,7 +5,7 @@
 <h1><img src={{ object.image }} /></h1>
 <p>{{ object.title }}</p>
 <p> {{ object.tag }}</p>
-
+<p> {{ object.description }}</p>
 {% for comment in object.comments.all %}
     <br>
     {{ comment }}
