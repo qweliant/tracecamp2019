@@ -9,6 +9,9 @@ from django.views.generic import CreateView, DetailView, UpdateView,ListView, Te
 from .forms import CommentForm
 from django.urls import reverse_lazy
 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
@@ -40,26 +43,28 @@ def __model_pred__():
         
     train.replace(lang, inplace=True)
     test.replace(lang, inplace=True)
- 
+    
+    plt.style.use('fivethirtyeight')
+    print(train.plot.scatter(x='original_language', y='revenue', s=50))
     #print(train.original_language.unique())
     print(test.shape, train.shape)
 
 
-    features = ['budget', 'popularity', 'original_language']
+    '''features = ['budget', 'popularity', 'original_language']
     target = 'revenue'
     model = DecisionTreeRegressor()
     model.fit(train[features], train[target])
 
-    '''y = train[target]
+    y = train[target]
     y_pred = model.predict(train[features])
-    train_error = mean_absolute_error(y, y_pred)'''
+    train_error = mean_absolute_error(y, y_pred)
 
-    '''y = test[target]
+    y = test[target]
     y_pred = model.predict(test[features])
-    test_error = mean_absolute_error(y, y_pred)'''
+    test_error = mean_absolute_error(y, y_pred)
 
 
-    '''print('train error', train_error)
+    print('train error', train_error)
     print('test error', test_error)'''
 
 class HomePageView(TemplateView):

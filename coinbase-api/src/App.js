@@ -1,13 +1,12 @@
 import React from 'react';
+import logo from './logo.svg';
 import './App.css';
-import { getAsteroids } from './nasaWorker';
+import getCurrency from './coinbaseAPI'
 
 function App() {
-
-  console.log(getAsteroids("2018-06-13", "2019-01-01"))
   return (
     <div className="App">
-      Test
+      
     </div>
   );
 }
