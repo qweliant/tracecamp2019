@@ -24,14 +24,11 @@ function Blog(){
     }
 
     function handleRemove(id){
-        const newList = list.filter((item, index )=> index != id);
+        const newList = list.filter((item, index )=> index !== id);
         setList(newList);
     }
 
-    function handleEdit(id){
-        const newItem = list.filter((item,index)=> index === id);
-        return newItem;
-    }
+
 
     return( 
         <div>

@@ -4,7 +4,7 @@ import Blog from "./Blog"
 import HomeView from "./Home"
 
 function Home(){
-    return <h1>Home <HomeView/></h1>
+    return <HomeView/>
 }
 
 function Post(){
@@ -20,8 +20,8 @@ function Routing(){
         <BrowserRouter>
         <div>
             <nav>
-                <Link to="/">Home/</Link>
-                <Link to="/post">Post/</Link>
+                <Link to="/">Home / </Link>
+                <Link to="/post">Post / </Link>
                 <Link to="/projects">Projects</Link>
             </nav>
 
