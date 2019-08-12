@@ -1,0 +1,16 @@
+{
+    "popularity": {
+        "preprocessing": {
+            "fill_value": 0,
+            "missing_value_strategy": "fill_with_const",
+            "normalization": null
+        }
+    },
+    "revenue": {
+        "preprocessing": {
+            "fill_value": 0,
+            "missing_value_strategy": "fill_with_const",
+            "normalization": null
+        }
+    }
+}
